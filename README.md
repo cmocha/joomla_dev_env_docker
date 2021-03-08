@@ -1,6 +1,6 @@
 # Joomla CMS Development Docker Setup
 
-> Docker Compose setup for Joomla with Joomla, MySQL, phpMyAdmin, & Composer Docker files.
+> Docker Compose setup for Joomla with Joomla, MySQL, phpMyAdmin, & Composer Docker images.
 
 ## Stuff
 
