@@ -3,21 +3,21 @@ version: "3.1"
 services:
   joomla:
     image: joomla
-    container_name: joomla_cms_elevon_dev
+    container_name: joomla_cms_dev
     restart: always
     links:
-      - joomla_elevon_db:mysql
+      - joomla_db:mysql
     ports:
       - 8080:80
     volumes:
       - "../:/var/www/html"
     environment:
-      JOOMLA_DB_HOST: joomla_elevon_db
+      JOOMLA_DB_HOST: joomla_db
       JOOMLA_DB_PASSWORD: root
 
-  joomla_elevon_db:
+  joomla_db:
     image: mysql:5.6
-    container_name: joomla_cms_elevon_dev_db
+    container_name: joomla_cms_dev_db
     ports:
       - 3306
     restart: always
@@ -28,21 +28,21 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: joomla_cms_elevon_dev_phpmyadmin
+    container_name: joomla_cms_dev_phpmyadmin
     environment:
-      PMA_HOST: "joomla_elevon_db:3306"
+      PMA_HOST: "joomla_db:3306"
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: "root"
     ports:
       - "8000:80"
     links:
-      - joomla_elevon_db:mysql
+      - joomla_db:mysql
     volumes:
       - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
 
   composer:
     image: composer
-    container_name: joomla_cms_elevon_dev_composer
+    container_name: joomla_cms_dev_composer
     working_dir: /var/www/html
     restart: "no"
     volumes:
